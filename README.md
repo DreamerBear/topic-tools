@@ -29,12 +29,11 @@
          - sz /mqdata/mq/store/config/topics.json
       - 在第二个shell中键入
          - mv /Users/xuchao/Documents/topics.json /Users/xuchao/Documents/topics2.json
-4. <font color="#dd0000">绪超</font> 合并topic文件并发送给白起（<font color="#00dd00">已自动化</font>）
+4. <font color="#dd0000">绪超</font> 合并topic文件并提交至git仓库,通知白起（<font color="#00dd00">已自动化</font>）
    - 在第二个shell中键入
       - java -jar /Users/xuchao/Documents/topic-0.0.1-SNAPSHOT.jar merge
-5. <font color="#dd0000">白起</font> 接收工作通知，下载topics.json并提交到git
-6. <font color="#dd0000">白起</font> 重启 k8s环境的 nameserver和broker
-7. <font color="#dd0000">白起</font> 重启任意k8s环境的camaro
+5. <font color="#dd0000">白起</font> 重启 k8s环境的 nameserver和broker
+6. <font color="#dd0000">白起</font> 重启任意k8s环境的camaro
 
 ---
 ### 项目结构说明
@@ -43,7 +42,7 @@
 - TopicAdder 读取excel并校验topic命名规则, 并添加到 预发和线上环境
 
 #### merge
-- TopicMerger 合并从线上机器sz下来的两个topics.json文件,并钉钉发送给白起
+- TopicMerger 合并从线上机器sz下来的两个topics.json文件,提交至git仓库,并钉钉提醒白起
 
 #### application.properties
 - topics.json.notify.dingUserId(将topics.json发送给哪个用户 绪超:15286823019673998  白起:15219728585798597)
