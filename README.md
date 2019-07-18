@@ -3,6 +3,7 @@
 ### 添加topic操作流程
 
 1. <font color="#0000dd">业务开发</font> 添加topic 需要发邮件或钉钉消息给 <font color="#dd0000">绪超</font> （<font color="#dddd00">手动</font>）
+   - topic规范见 [topic规范](https://cf.dawanju.net/pages/viewpage.action?pageId=15271227)
 2. <font color="#dd0000">绪超</font> 审核 topic 并 去预发和线上camaro后台添加topic（<font color="#00dd00">已自动化</font>）   
    - 在/Users/xuchao/Documents/topics.xlsx 文件中录入topic列表   
    - 在local shell 中执行   
