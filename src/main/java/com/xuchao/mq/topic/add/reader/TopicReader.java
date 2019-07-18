@@ -4,8 +4,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
-import com.xuchao.mq.topic.add.domain.Topic;
-import com.xuchao.mq.topic.add.domain.TopicColumn;
+import com.xuchao.mq.topic.domain.Topic;
+import com.xuchao.mq.topic.domain.TopicColumn;
 import com.xuchao.mq.topic.util.ValidatorUtil;
 import org.springframework.util.StringUtils;
 

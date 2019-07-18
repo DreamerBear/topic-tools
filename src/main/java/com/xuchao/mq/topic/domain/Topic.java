@@ -1,4 +1,4 @@
-package com.xuchao.mq.topic.add.domain;
+package com.xuchao.mq.topic.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

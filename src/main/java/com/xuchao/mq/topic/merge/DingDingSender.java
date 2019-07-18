@@ -120,24 +120,34 @@ public class DingDingSender {
         OapiCspaceAddToSingleChatResponse response = null;
 
         try {
-            DingTalkClient client1 = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
+            sendMessageToUser(userId,message);
+            DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/cspace/add_to_single_chat?" + WebUtils.buildQuery(request.getTextParams(), "utf-8"));
+            response = client.execute(request, accessToken);
+        } catch (Exception e) {
+            log.error("sendFileToUser error, Response is {}.", JSON.toJSONString(response));
+        }
 
-            OapiMessageCorpconversationAsyncsendV2Request request1 = new OapiMessageCorpconversationAsyncsendV2Request();
-            request1.setUseridList(userId);
-            request1.setAgentId(Long.valueOf(agentId));
-            request1.setToAllUser(false);
+    }
+
+    public void sendMessageToUser(String userId, String message) {
+        String accessToken = getAccessToken();
+        OapiMessageCorpconversationAsyncsendV2Response response = null;
+        try {
+            DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/message/corpconversation/asyncsend_v2");
+
+            OapiMessageCorpconversationAsyncsendV2Request request = new OapiMessageCorpconversationAsyncsendV2Request();
+            request.setUseridList(userId);
+            request.setAgentId(Long.valueOf(agentId));
+            request.setToAllUser(false);
 
             OapiMessageCorpconversationAsyncsendV2Request.Msg msg = new OapiMessageCorpconversationAsyncsendV2Request.Msg();
             msg.setMsgtype("text");
             msg.setText(new OapiMessageCorpconversationAsyncsendV2Request.Text());
             msg.getText().setContent(message);
-            request1.setMsg(msg);
-            OapiMessageCorpconversationAsyncsendV2Response response1 = client1.execute(request1, accessToken);
-
-            DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/cspace/add_to_single_chat?" + WebUtils.buildQuery(request.getTextParams(), "utf-8"));
+            request.setMsg(msg);
             response = client.execute(request, accessToken);
         } catch (Exception e) {
-            log.error("sendFileToUser error, Response is {}.", JSON.toJSONString(response));
+            log.error("sendMessageToUser error, Response is {}.", JSON.toJSONString(response));
         }
 
     }

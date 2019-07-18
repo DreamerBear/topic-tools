@@ -1,6 +1,6 @@
 package com.xuchao.mq.topic.add.http;
 
-import com.xuchao.mq.topic.add.domain.Topic;
+import com.xuchao.mq.topic.domain.Topic;
 import lombok.AllArgsConstructor;
 
 import java.text.MessageFormat;

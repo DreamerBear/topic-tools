@@ -4,6 +4,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.xuchao.mq.topic.domain.GitCommit;
+import com.xuchao.mq.topic.merge.http.GitApiClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +33,9 @@ public class TopicMerger {
     @Autowired
     DingDingSender dingDingSender;
 
+    @Autowired
+    GitApiClient gitApiClient;
+
     @Value("${topics.json.1.path}")
     String topics1JsonPath;
 
@@ -42,6 +47,18 @@ public class TopicMerger {
 
     @Value("${topics.json.notify.dingUserId}")
     String topicsNotifyDingUserId;
+
+    @Value("${topics.json.git.Path}")
+    String topicsJsonGitPath;
+
+    @Value("${topics.json.git.branch}")
+    String topicsJsonGitBranch;
+
+    @Value("${topics.json.git.author}")
+    String topicsJsonGitAuthor;
+
+    @Value("${topics.json.git.author.email}")
+    String topicsJsonGitAuthorEmail;
 
     public void mergeTopicsJson(){
         log.info("/*=========== start mergeTopicsJson ===========*/");
@@ -92,10 +109,19 @@ public class TopicMerger {
         String topicsStr = JSON.toJSONString(topics, true);
         FileUtil.writeUtf8String(topicsStr,topicsJsonPath);
 
-        dingDingSender.sendFileToUser(
-                topicsJsonPath,
+        Date now = new Date();
+        gitApiClient.uploadGitFile(GitCommit.builder()
+                .author(topicsJsonGitAuthor)
+                .authorEmail(topicsJsonGitAuthorEmail)
+                .branch(topicsJsonGitBranch)
+                .gitFilePath(topicsJsonGitPath)
+                .localFilePath(topicsJsonPath)
+                .commitMessage("从线上同步topics,时间:" + DateUtil.formatDateTime(now))
+                .build());
+
+        dingDingSender.sendMessageToUser(
                 topicsNotifyDingUserId,
-                "topics.json更新了,请及时同步到git仓库, 时间:" + DateUtil.formatDateTime(new Date()));
+                "已从线上同步topics.json到git仓库, 时间:" + DateUtil.formatDateTime(now));
         log.info("/*=========== finish mergeTopicsJson ===========*/");
     }
 }

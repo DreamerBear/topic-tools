@@ -1,7 +1,7 @@
 package com.xuchao.mq.topic.add;
 
 
-import com.xuchao.mq.topic.add.domain.Topic;
+import com.xuchao.mq.topic.domain.Topic;
 import com.xuchao.mq.topic.add.http.CamaroApiClient;
 import com.xuchao.mq.topic.add.http.CamaroApiClientFactory;
 import com.xuchao.mq.topic.add.reader.TopicReader;
