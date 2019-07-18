@@ -30,15 +30,22 @@ public class TopicApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String[] sourceArgs = args.getSourceArgs();
-        log.info(Arrays.toString(sourceArgs));
-        Set<String> argSet = new HashSet<>();
-        CollectionUtils.addAll(argSet,sourceArgs);
-        if (argSet.contains("add")) {
-            topicAdder.addTopic();
+        try {
+            String[] sourceArgs = args.getSourceArgs();
+            log.info("/*=========== application run start, args:{} ===========*/", Arrays.toString(sourceArgs));
+            Set<String> argSet = new HashSet<>();
+            CollectionUtils.addAll(argSet, sourceArgs);
+            if (argSet.contains("add")) {
+                topicAdder.addTopic();
+            }
+            if (argSet.contains("merge")) {
+                topicMerger.mergeTopicsJson();
+            }
+        } catch (Exception e) {
+            log.error("/*=========== application run fail, please check ===========*/", e);
+        } finally {
+            log.info("/*=========== application run finish ===========*/");
         }
-        if (argSet.contains("merge")) {
-            topicMerger.mergeTopicsJson();
-        }
+
     }
 }

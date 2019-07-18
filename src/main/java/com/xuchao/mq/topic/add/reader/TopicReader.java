@@ -39,7 +39,7 @@ public class TopicReader {
         writer.write(topicColumnList);
         writer.close();
         if(!passed){
-            throw new IllegalArgumentException("topic校验失败,请检查");
+            throw new IllegalArgumentException("topic校验未通过,请检查xlsx文件中的错误消息");
         }
         return topicList;
     }
