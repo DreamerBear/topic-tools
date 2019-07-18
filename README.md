@@ -50,7 +50,8 @@
 - topics.json.1.path(topics1.json文件地址)
 - topics.json.2.path(topics2.json文件地址)
 - topics.xlsx.path(添加topic的excel文件地址)
-
+- git.privateToken(gitlab私钥)
+- topics.json.git.Path(topics.json的git地址)
 ---
 
 ## Contribute
