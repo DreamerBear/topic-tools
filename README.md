@@ -1,4 +1,10 @@
 ## 添加topic半自动化小工具
+- 执行环境
+   - 开发人员的mac电脑
+   - 连接bigtoys内网
+   - 跳板机权限
+   - jdk8
+   - sshpass
 
 ### 添加topic操作流程
 
@@ -43,6 +49,7 @@
 - TopicMerger 合并从线上机器sz下来的两个topics.json文件,提交至git仓库,执行重启脚本,并钉钉提醒白起
 
 #### application.properties
+- username(本机用户名)
 - topics.json.notify.dingUserId(将topics.json发送给哪个用户 绪超:15286823019673998  白起:15219728585798597)
 - topics.json.path(topics.json文件地址)
 - topics.json.1.path(topics1.json文件地址)
