@@ -10,13 +10,13 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.Pattern;
 
 /**
- * All rights Reserved, Designed By www.maihaoche.com
+ * All rights Reserved, Designed By www.xxx.com
  *
  * @Package com.xuchao.mq.topic.domain
- * @author: xuchao（xuchao@maihaoche.com）
+ * @author: xuchao（xuchao@xxx.com）
  * @date: 2019-07-17 18:16
- * @Copyright: 2017-2020 www.maihaoche.com Inc. All rights reserved.
- * 注意：本内容仅限于卖好车内部传阅，禁止外泄以及用于其他的商业目
+ * @Copyright: 2017-2020 www.xxx.com Inc. All rights reserved.
+ * 注意：本内容仅限于xxx内部传阅，禁止外泄以及用于其他的商业目
  */
 @Data
 @AllArgsConstructor
@@ -36,7 +36,7 @@ public class Topic {
     @Range(min = 4,max = 16,message = "队列数必须取[4,16]区间的整数")
     private Integer queueNum = 4;
     @Builder.Default
-    private String creator = "绪超";
+    private String creator = "xxx";
     @Builder.Default
     private String messageBodyDependence = "";
     @Builder.Default

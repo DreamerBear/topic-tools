@@ -29,13 +29,13 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * All rights Reserved, Designed By www.maihaoche.com
+ * All rights Reserved, Designed By www.xxx.com
  *
  * @Package com.xuchao.mq.topic.util
- * @author: xuchao（xuchao@maihaoche.com）
+ * @author: xuchao（xuchao@xxx.com）
  * @date: 2019-07-18 12:06
- * @Copyright: 2017-2020 www.maihaoche.com Inc. All rights reserved.
- * 注意：本内容仅限于卖好车内部传阅，禁止外泄以及用于其他的商业目
+ * @Copyright: 2017-2020 www.xxx.com Inc. All rights reserved.
+ * 注意：本内容仅限于xxx内部传阅，禁止外泄以及用于其他的商业目
  */
 @Slf4j
 @Component

@@ -26,17 +26,17 @@ public class TopicApplicationTests {
 
     @Test
     public void testSaveFile(){
-        dingDingSender.saveFile("/Users/xuchao/Documents/topics.json");
+        dingDingSender.saveFile("/Users/xxx/Documents/topics.json");
     }
 
     @Test
     public void testSendFileToUser(){
-        dingDingSender.sendFileToUser("/Users/xuchao/Documents/topics.json","15286823019673998","hello");
+        dingDingSender.sendFileToUser("/Users/xxx/Documents/topics.json","xxx","hello");
     }
 
     @Test
     public void testGetGitFile(){
-        System.out.println(gitApiClient.getGitFile("https://git.dawanju.net/api/v4/projects/859/repository/files/middleware%2Fadd_topic.sh"));
+        System.out.println(gitApiClient.getGitFile("https://git.xxx.net/api/v4/projects/859/repository/files/middleware%2Fadd_topic.sh"));
     }
 
 }
