@@ -2,10 +2,12 @@ package com.xuchao.mq.topic.merge;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.RuntimeUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xuchao.mq.topic.domain.GitCommit;
 import com.xuchao.mq.topic.merge.http.GitApiClient;
+import com.xuchao.mq.topic.merge.shell.ShellClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +38,9 @@ public class TopicMerger {
     @Autowired
     GitApiClient gitApiClient;
 
+    @Autowired
+    ShellClient shellClient;
+
     @Value("${topics.json.1.path}")
     String topics1JsonPath;
 
@@ -48,7 +53,7 @@ public class TopicMerger {
     @Value("${topics.json.notify.dingUserId}")
     String topicsNotifyDingUserId;
 
-    @Value("${topics.json.git.Path}")
+    @Value("${topics.json.git.path}")
     String topicsJsonGitPath;
 
     @Value("${topics.json.git.branch}")
@@ -59,6 +64,12 @@ public class TopicMerger {
 
     @Value("${topics.json.git.author.email}")
     String topicsJsonGitAuthorEmail;
+
+    @Value("${topics.add.sh.git.path}")
+    String topicsAddShGitPath;
+
+    @Value("${topics.add.sh.local.path}")
+    String topicsAddShLocalPath;
 
     public void mergeTopicsJson(){
         log.info("/*=========== start mergeTopicsJson ===========*/");
@@ -119,9 +130,12 @@ public class TopicMerger {
                 .commitMessage("从线上同步topics,时间:" + DateUtil.formatDateTime(now))
                 .build());
 
+        String topicsAddShellContent = gitApiClient.getGitFile(topicsAddShGitPath);
+        shellClient.executeShell(topicsAddShLocalPath,topicsAddShellContent);
+
         dingDingSender.sendMessageToUser(
                 topicsNotifyDingUserId,
-                "已从线上同步topics.json到git仓库, 时间:" + DateUtil.formatDateTime(now));
+                "已将线上topics.json更新到k8s环境, 时间:" + DateUtil.formatDateTime(now));
         log.info("/*=========== finish mergeTopicsJson ===========*/");
     }
 }

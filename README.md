@@ -29,11 +29,9 @@
          - sz /mqdata/mq/store/config/topics.json
       - 在第二个shell中键入
          - mv /Users/xuchao/Documents/topics.json /Users/xuchao/Documents/topics2.json
-4. <font color="#dd0000">绪超</font> 合并topic文件并提交至git仓库,通知白起（<font color="#00dd00">已自动化</font>）
+4. <font color="#dd0000">绪超</font> 合并topic文件并提交至git仓库,执行重启脚本(1.重启k8s环境的 nameserver和broker 2.重启任意k8s环境的camaro),最后通知白起（<font color="#00dd00">已自动化</font>）
    - 在第二个shell中键入
       - java -jar /Users/xuchao/Documents/topic-0.0.1-SNAPSHOT.jar merge
-5. <font color="#dd0000">白起</font> 重启 k8s环境的 nameserver和broker
-6. <font color="#dd0000">白起</font> 重启任意k8s环境的camaro
 
 ---
 ### 项目结构说明
@@ -51,7 +49,8 @@
 - topics.json.2.path(topics2.json文件地址)
 - topics.xlsx.path(添加topic的excel文件地址)
 - git.privateToken(gitlab私钥)
-- topics.json.git.Path(topics.json的git地址)
+- topics.json.git.path(topics.json的git地址)
+- topics.add.sh.git.path(add_topics.sh脚本git路径)
 ---
 
 ## Contribute

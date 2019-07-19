@@ -1,6 +1,7 @@
 package com.xuchao.mq.topic;
 
 import com.xuchao.mq.topic.merge.DingDingSender;
+import com.xuchao.mq.topic.merge.http.GitApiClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class TopicApplicationTests {
 
     @Autowired
     DingDingSender dingDingSender;
+
+    @Autowired
+    GitApiClient gitApiClient;
 
     @Test
     public void testGetAccessToken() {
@@ -28,6 +32,11 @@ public class TopicApplicationTests {
     @Test
     public void testSendFileToUser(){
         dingDingSender.sendFileToUser("/Users/xuchao/Documents/topics.json","15286823019673998","hello");
+    }
+
+    @Test
+    public void testGetGitFile(){
+        System.out.println(gitApiClient.getGitFile("https://git.dawanju.net/api/v4/projects/859/repository/files/middleware%2Fadd_topic.sh"));
     }
 
 }
