@@ -40,7 +40,7 @@
 - TopicAdder 读取excel并校验topic命名规则, 并添加到 预发和线上环境
 
 #### merge
-- TopicMerger 合并从线上机器sz下来的两个topics.json文件,提交至git仓库,并钉钉提醒白起
+- TopicMerger 合并从线上机器sz下来的两个topics.json文件,提交至git仓库,执行重启脚本,并钉钉提醒白起
 
 #### application.properties
 - topics.json.notify.dingUserId(将topics.json发送给哪个用户 绪超:15286823019673998  白起:15219728585798597)
